@@ -5,6 +5,7 @@ export type CardsState = ICard[]
 export const LOAD_CARDS = 'LOAD_CARDS'
 export const LOAD_CARDS_SUCCESS = 'LOAD_CARDS_SUCCESS'
 export const ADD_CARD = 'ADD_CARD'
+export const EDIT_CARD = 'EDIT_CARD'
 
 interface LoadCardsAction {
   type: typeof LOAD_CARDS
@@ -20,4 +21,9 @@ interface AddCardAction {
   payload: ICard
 }
 
-export type CardsActionTypes = LoadCardsAction | LoadCardsSuccessAction | AddCardAction
+interface EditCardAction {
+  type: typeof EDIT_CARD
+  payload: ICard
+}
+
+export type CardsActionTypes = LoadCardsAction | LoadCardsSuccessAction | AddCardAction | EditCardAction

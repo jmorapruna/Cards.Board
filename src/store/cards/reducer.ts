@@ -1,4 +1,4 @@
-import { ADD_CARD, CardsActionTypes, CardsState, LOAD_CARDS_SUCCESS } from './types'
+import { ADD_CARD, CardsActionTypes, CardsState, EDIT_CARD, LOAD_CARDS_SUCCESS } from './types'
 
 const initialState: CardsState = []
 
@@ -11,6 +11,15 @@ export default function (
       return [...action.payload]
     case ADD_CARD:
       return [...state, { ...action.payload, id: state.length }]
+    case EDIT_CARD: {
+      const newState = state.map(card =>
+        card.id === action.payload.id
+          ? { ...action.payload }
+          : card
+      )
+
+      return newState
+    }
     default:
       return state
   }

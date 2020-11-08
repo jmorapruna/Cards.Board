@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Card } from '../components/card.component'
 import { loadCards } from '../store/cards/actions'
 import { RootState } from '../store'
-import { AddCardModal } from '../components/add-card-modal.component'
+import { AddOrEditCardModal } from '../components/add-or-edit-card-modal.component'
 import { Button } from '../components/button.component'
 import { OrderingFieldType, OrderingType } from '../models/cards-ordering.model'
 import { OrderingCriteria } from '../components/ordering-criteria.component'
@@ -30,6 +30,7 @@ export const CardsListPage = () => {
   const cards = useSelector(selectOrderedCards)
 
   const [showAddCardModal, setShowAddCardModal] = useState(false)
+  const [editedCard, setEditedCard] = useState<ICard | undefined>(undefined)
 
   useEffect(() => {
     dispatch(loadCards())
@@ -37,11 +38,22 @@ export const CardsListPage = () => {
 
   return <div>
     {
-      showAddCardModal && <AddCardModal closeModal={() => setShowAddCardModal(false)} />
+      showAddCardModal && <AddOrEditCardModal closeModal={() => setShowAddCardModal(false)} />
     }
-    
+
     {
-      cards.map(card => (<Card card={card} key={card.id} />))
+      editedCard !== undefined && <AddOrEditCardModal editedCard={editedCard} closeModal={() => setEditedCard(undefined)} />
+    }
+
+    {
+      cards.map(card => (
+        <div onClick={() => editedCard === undefined && setEditedCard(card)}>
+          <Card
+            card={card}
+            key={card.id}
+          />
+        </div>
+      ))
     }
 
     <OrderingCriteria />
