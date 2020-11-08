@@ -1,4 +1,4 @@
-import { ADD_CARD, CardsActionTypes, CardsState, EDIT_CARD, LOAD_CARDS_SUCCESS } from './types'
+import { ADD_CARD, CardsActionTypes, CardsState, DELETE_CARD_BY_ID, EDIT_CARD, LOAD_CARDS_SUCCESS } from './types'
 
 const initialState: CardsState = []
 
@@ -20,6 +20,8 @@ function reducer(
 
       return newState
     }
+    case DELETE_CARD_BY_ID:
+      return state.filter(c => c.id !== action.payload)
     default:
       return state
   }

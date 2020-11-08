@@ -6,6 +6,8 @@ export const LOAD_CARDS = 'LOAD_CARDS'
 export const LOAD_CARDS_SUCCESS = 'LOAD_CARDS_SUCCESS'
 export const ADD_CARD = 'ADD_CARD'
 export const EDIT_CARD = 'EDIT_CARD'
+export const DELETE_CARD_BY_ID = 'DELETE_CARD_BY_ID'
+
 
 interface LoadCardsAction {
   type: typeof LOAD_CARDS
@@ -26,4 +28,9 @@ interface EditCardAction {
   payload: ICard
 }
 
-export type CardsActionTypes = LoadCardsAction | LoadCardsSuccessAction | AddCardAction | EditCardAction
+interface DeleteCardByIdAction {
+  type: typeof DELETE_CARD_BY_ID
+  payload: number
+}
+
+export type CardsActionTypes = LoadCardsAction | LoadCardsSuccessAction | AddCardAction | EditCardAction | DeleteCardByIdAction

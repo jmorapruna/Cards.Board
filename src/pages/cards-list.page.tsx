@@ -47,11 +47,9 @@ export const CardsListPage = () => {
 
     {
       cards.map(card => (
-        <div onClick={() => editedCard === undefined && setEditedCard(card)}>
-          <Card
-            card={card}
-            key={card.id}
-          />
+        <div key={card.id}>
+          <Card card={card} />
+          <p onClick={() => editedCard === undefined && setEditedCard(card)}>Edit</p>
         </div>
       ))
     }

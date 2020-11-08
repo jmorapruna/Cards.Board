@@ -1,5 +1,5 @@
 import { ICard } from '../../models/card.model'
-import { ADD_CARD, CardsActionTypes, LOAD_CARDS, LOAD_CARDS_SUCCESS, EDIT_CARD } from './types'
+import { ADD_CARD, CardsActionTypes, LOAD_CARDS, LOAD_CARDS_SUCCESS, EDIT_CARD, DELETE_CARD_BY_ID } from './types'
 
 export function loadCards(): CardsActionTypes {
   return {
@@ -25,5 +25,12 @@ export function editCard(card: ICard): CardsActionTypes {
   return {
     type: EDIT_CARD,
     payload: card
+  }
+}
+
+export function deleteCardById(cardId: number): CardsActionTypes {
+  return {
+    type: DELETE_CARD_BY_ID,
+    payload: cardId
   }
 }

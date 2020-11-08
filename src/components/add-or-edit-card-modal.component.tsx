@@ -30,7 +30,7 @@ export const AddOrEditCardModal: React.FC<Props> = ({ editedCard, closeModal = (
 
   const [anyError, setAnyError] = useState(false)
 
-  const handleAddCard = () => {
+  const handleAddOrEditButtonClick = () => {
     const anyError = !formValue[FIELD_TITLE] || !formValue[FIELD_DESCRIPTION]
     setAnyError(anyError)
 
@@ -70,8 +70,7 @@ export const AddOrEditCardModal: React.FC<Props> = ({ editedCard, closeModal = (
       }
 
       <Button
-        isDisabled={anyError}
-        buttonWasClicked={handleAddCard}>{buttonText}</Button>
+        buttonWasClicked={handleAddOrEditButtonClick}>{buttonText}</Button>
     </div>
   )
 }
