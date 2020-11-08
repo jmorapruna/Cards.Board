@@ -2,7 +2,7 @@ import { ADD_CARD, CardsActionTypes, CardsState, LOAD_CARDS_SUCCESS } from './ty
 
 const initialState: CardsState = []
 
-export function cardsReducer(
+export default function(
   state = initialState,
   action: CardsActionTypes
 ): CardsState {
