@@ -1,4 +1,4 @@
-import { CardsActionTypes, CardsState, LOAD_CARDS_SUCCESS } from './types'
+import { ADD_CARD, CardsActionTypes, CardsState, LOAD_CARDS_SUCCESS } from './types'
 
 const initialState: CardsState = []
 
@@ -9,6 +9,8 @@ export function cardsReducer(
   switch (action.type) {
     case LOAD_CARDS_SUCCESS:
       return [...action.payload]
+    case ADD_CARD:
+      return [...state, action.payload]
     default:
       return state
   }
