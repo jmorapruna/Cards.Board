@@ -54,6 +54,8 @@ padding: 40px;
 background-color: white;
 max-width: 560px;
 margin: 0 auto;
+border-radius: 8px;
+box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `
 
 const ContentDiv = styled.div`

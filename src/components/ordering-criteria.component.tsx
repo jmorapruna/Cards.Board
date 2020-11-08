@@ -3,10 +3,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 import { changeOrderingType, changeOrderingField } from '../store/cards-ordering/actions'
 
-import { AiOutlineSortAscending, AiOutlineSortDescending, AiOutlineLine } from 'react-icons/ai'
+import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai'
 import { OrderingFieldType, OrderingType } from '../models/cards-ordering.model'
+import { Button } from './button.component'
+import styled from 'styled-components'
 
 const selectCardsOrdering = (state: RootState) => state.cardsOrdering
+
+const OrderingButtons = styled.div`
+display: flex;
+justify-content: center;
+align-content: center;
+
+& > * {
+  margin: 0 5px;
+}
+`
 
 export const OrderingCriteria = () => {
   const dispatch = useDispatch()
@@ -36,24 +48,24 @@ export const OrderingCriteria = () => {
   }
 
   return (
-    <div>
-      <div onClick={() => handleToggleOrdering(OrderingFieldType.ByTitle)}>
-        {
-          isFieldTitle
-            ? <Icon />
-            : <AiOutlineLine />
-        }
+    <OrderingButtons>
+      <Button buttonWasClicked={() => handleToggleOrdering(OrderingFieldType.ByTitle)} width='140px' backgroundColor='#e09546'>
+        <span>
+          {
+            isFieldTitle && <Icon />
+          }
+        </span>
         <span>Title</span>
-      </div>
+      </Button>
 
-      <div onClick={() => handleToggleOrdering(OrderingFieldType.ByDescription)}>
-        {
-          !isFieldTitle
-            ? <Icon />
-            : <AiOutlineLine />
-        }
+      <Button buttonWasClicked={() => handleToggleOrdering(OrderingFieldType.ByDescription)} width='140px' backgroundColor='#e09546'>
+        <span>
+          {
+            !isFieldTitle && <Icon />
+          }
+        </span>
         <span>Description</span>
-      </div>
-    </div>
+      </Button>
+    </OrderingButtons>
   )
 }
