@@ -6,7 +6,7 @@ const initialState: CardsOrderingState = {
   order: OrderingType.AscendingOrder
 }
 
-export default function(
+function reducer(
   state = initialState,
   action: CardsOrderingActionTypes
 ): CardsOrderingState {
@@ -25,3 +25,5 @@ export default function(
       return state
   }
 }
+
+export default reducer

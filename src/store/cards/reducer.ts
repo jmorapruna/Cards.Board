@@ -2,7 +2,7 @@ import { ADD_CARD, CardsActionTypes, CardsState, EDIT_CARD, LOAD_CARDS_SUCCESS }
 
 const initialState: CardsState = []
 
-export default function (
+function reducer(
   state = initialState,
   action: CardsActionTypes
 ): CardsState {
@@ -24,3 +24,5 @@ export default function (
       return state
   }
 }
+
+export default reducer

@@ -1,29 +1,55 @@
 import { Epic, ofType } from 'redux-observable';
-import { of } from 'rxjs';
-import { exhaustMap } from 'rxjs/operators'
+import { map, tap, ignoreElements } from 'rxjs/operators'
 import { RootState } from '..'
+import { ICard } from '../../models/card.model';
 import { loadCardsSuccess } from './actions'
-import { CardsActionTypes, LOAD_CARDS } from './types'
+import { ADD_CARD, CardsActionTypes, EDIT_CARD, LOAD_CARDS } from './types'
 
-const mockCards = [
-  { id: 0, title: 'Card 1', description: 'This is card 1', imageUrl: 'https://www.typescriptlang.org/images/branding/two-colors.svg' },
-  { id: 1, title: 'Card 2', description: 'This is card 2' }
-]
-
-export const cardsLoadEpic: Epic<
+const loadCardsEpic: Epic<
   CardsActionTypes,
   CardsActionTypes,
   RootState
-> = (action$, store) =>
+> = (action$) =>
     action$.pipe(
       ofType(LOAD_CARDS),
-      exhaustMap(() =>
-        of(loadCardsSuccess(mockCards))
-      )
+      map(() => {
+
+        let cards: ICard[] = []
+
+        try {
+          const json = localStorage.getItem('cards') || '[]'
+          cards = JSON.parse(json)
+        }
+        catch {
+          localStorage.removeItem('cards')
+        }
+
+        return loadCardsSuccess(cards)
+      }),
+    )
+
+const saveCardsOnAddOrEditCardEpic: Epic<
+  CardsActionTypes,
+  CardsActionTypes,
+  RootState
+> = (action$, state$) =>
+    action$.pipe(
+      ofType(ADD_CARD, EDIT_CARD),
+      tap(() => {
+
+        try {
+          const json = JSON.stringify(state$.value.cards)
+          localStorage.setItem('cards', json)
+        }
+        catch {
+        }
+      }),
+      ignoreElements()
     )
 
 const epics = [
-  cardsLoadEpic
+  loadCardsEpic,
+  saveCardsOnAddOrEditCardEpic
 ]
 
 export default epics
