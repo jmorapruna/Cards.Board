@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
   height: 40px;
   line-height: 40px;
   background-color: #50d890;
+  color: white;
   text-align: center;
   border-radius: 5px;
   font-weight: 600;
