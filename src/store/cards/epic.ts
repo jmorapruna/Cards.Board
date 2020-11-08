@@ -6,8 +6,8 @@ import { loadCardsSuccess } from './actions'
 import { CardsActionTypes, LOAD_CARDS } from './types'
 
 const mockCards = [
-  { title: 'Card 1', description: 'This is card 1', imageUrl: 'https://www.typescriptlang.org/images/branding/two-colors.svg' },
-  { title: 'Card 2', description: 'This is card 2' }
+  { id: 0, title: 'Card 1', description: 'This is card 1', imageUrl: 'https://www.typescriptlang.org/images/branding/two-colors.svg' },
+  { id: 1, title: 'Card 2', description: 'This is card 2' }
 ]
 
 export const cardsLoadEpic: Epic<

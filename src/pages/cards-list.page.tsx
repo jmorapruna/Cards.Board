@@ -39,8 +39,9 @@ export const CardsListPage = () => {
     {
       showAddCardModal && <AddCardModal closeModal={() => setShowAddCardModal(false)} />
     }
+    
     {
-      cards.map((card, i) => (<Card card={card} key={i} />))
+      cards.map(card => (<Card card={card} key={card.id} />))
     }
 
     <OrderingCriteria />
