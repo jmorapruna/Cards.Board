@@ -49,7 +49,7 @@ export const OrderingCriteria = () => {
 
   return (
     <OrderingButtons>
-      <Button buttonWasClicked={() => handleToggleOrdering(OrderingFieldType.ByTitle)} width='140px' backgroundColor='#e09546'>
+      <Button onClick={() => handleToggleOrdering(OrderingFieldType.ByTitle)} width='140px' backgroundColor='#e09546'>
         <span>
           {
             isFieldTitle && <Icon />
@@ -58,7 +58,7 @@ export const OrderingCriteria = () => {
         <span>Title</span>
       </Button>
 
-      <Button buttonWasClicked={() => handleToggleOrdering(OrderingFieldType.ByDescription)} width='140px' backgroundColor='#e09546'>
+      <Button onClick={() => handleToggleOrdering(OrderingFieldType.ByDescription)} width='140px' backgroundColor='#e09546'>
         <span>
           {
             !isFieldTitle && <Icon />

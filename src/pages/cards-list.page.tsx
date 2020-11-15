@@ -43,17 +43,20 @@ line-height: 40px;
 const selectOrderedCards = (state: RootState) => {
   const { cards, cardsOrdering } = state
 
-  let sortedCards: ICard[] = []
-  if (cardsOrdering.field === OrderingFieldType.ByTitle)
-    sortedCards = cardsOrdering.order === OrderingType.AscendingOrder
-      ? cards.sort((a, b) => a.title.localeCompare(b.title))
-      : cards.sort((a, b) => b.title.localeCompare(a.title))
-  else
-    sortedCards = cardsOrdering.order === OrderingType.AscendingOrder
-      ? cards.sort((a, b) => a.description.localeCompare(b.description))
-      : cards.sort((a, b) => b.description.localeCompare(a.description))
+  let sortedCards: ICard[] = [...cards]
+  if (cardsOrdering.field === OrderingFieldType.ByTitle) {
+    if (cardsOrdering.order === OrderingType.AscendingOrder)
+      sortedCards.sort((a, b) => a.title.localeCompare(b.title))
+    else
+      sortedCards.sort((a, b) => b.title.localeCompare(a.title))
+  } else {
+    if (cardsOrdering.order === OrderingType.AscendingOrder)
+      sortedCards.sort((a, b) => a.description.localeCompare(b.description))
+    else
+      sortedCards.sort((a, b) => b.description.localeCompare(a.description))
+  }
 
-  return [...sortedCards]
+  return sortedCards
 }
 
 export const CardsListPage = () => {
@@ -95,7 +98,7 @@ export const CardsListPage = () => {
     </CardsWrapper>
 
     <AddButtonWrapper>
-      <Button buttonWasClicked={() => setShowAddCardModal(true)} width='200px'>
+      <Button onClick={() => setShowAddCardModal(true)} width='200px'>
         Add a card
       </Button>
     </AddButtonWrapper>

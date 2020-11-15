@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 type Props = {
-  isDisabled?: boolean
-  buttonWasClicked: () => void
+  onClick: () => void
   backgroundColor?: string
   width?: string
 }
@@ -25,15 +24,14 @@ display: inline-block;
 
 export const Button: React.FC<Props> = ({
   children,
-  buttonWasClicked,
-  isDisabled = false,
+  onClick: buttonWasClicked,
   backgroundColor = '#50d890',
   width = '100%'
 }) => {
   return (
     <StyledDiv
       style={{ width, backgroundColor }}
-      onClick={() => !isDisabled && buttonWasClicked()}>
+      onClick={buttonWasClicked}>
       {children}
     </StyledDiv>
   )

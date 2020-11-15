@@ -85,11 +85,14 @@ font-weight: 500;
 margin-bottom: 40px;
 `
 
-export const AddOrEditCardModal: React.FC<Props> = ({ editedCard, closeModal = () => { } }) => {
-  const dispatch = useDispatch()
+export const AddOrEditCardModal: React.FC<Props> = ({
+  editedCard,
+  closeModal: onClose = () => { }
+}) => {
 
+  const dispatch = useDispatch()
   const modalRef = useRef(null)
-  useOutsideClickEffect(modalRef, closeModal)
+  useOutsideClickEffect(modalRef, onClose)
 
   const [formValue, setFormValue] = useState({
     id: editedCard?.id || '',
@@ -125,7 +128,7 @@ export const AddOrEditCardModal: React.FC<Props> = ({ editedCard, closeModal = (
           imageUrl: formValue[FIELD_IMAGE_URL]
         }))
 
-      closeModal()
+      onClose()
     }
   }
 
@@ -141,7 +144,7 @@ export const AddOrEditCardModal: React.FC<Props> = ({ editedCard, closeModal = (
     <WrapperDiv>
       <ModalDiv ref={modalRef}>
 
-        <CloseButton onClick={closeModal}>
+        <CloseButton onClick={onClose}>
           <GrClose />
         </CloseButton>
 
@@ -164,7 +167,7 @@ export const AddOrEditCardModal: React.FC<Props> = ({ editedCard, closeModal = (
             </ErrorDiv>
           }
 
-          <Button buttonWasClicked={handleAddOrEditButtonClick}>{buttonText}</Button>
+          <Button onClick={handleAddOrEditButtonClick}>{buttonText}</Button>
         </ContentDiv>
       </ModalDiv>
     </WrapperDiv>
